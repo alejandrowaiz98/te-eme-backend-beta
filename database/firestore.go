@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"cloud.google.com/go/firestore"
+	"github.com/alejandrowaiz98/te-eme-backend-beta/models"
 )
 
 type Firestore struct {
@@ -13,7 +14,8 @@ type Firestore struct {
 }
 
 type FirestoreImplementation interface {
-	Register()
+	Register(User models.User) error
+	Login(IncomingUser models.User) (models.User, error)
 }
 
 func New() (FirestoreImplementation, error) {
